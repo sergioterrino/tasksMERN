@@ -1,0 +1,8 @@
+.navbar {
+  background-color: #ffffff; /* Cambia #ffffff por el color de fondo deseado */
+  z-index: 1000; /* Asegura que la navbar esté por encima de otros elementos */
+  position: sticky; /* O 'fixed' dependiendo de tu necesidad */
+  top: 0; /* Alinea la navbar en la parte superior de la ventana */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Opcional: agrega sombra para destacar */
+  width: 100%; /* Asegura que la navbar se extienda a lo ancho de la ventana */
+}
