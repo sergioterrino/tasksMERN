@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 function LoginPage() {
@@ -11,7 +11,9 @@ function LoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/tasks');
+    if (isAuthenticated) {
+      navigate('/tasks', { state: { fromLogin: true } });
+    }
   }, [isAuthenticated]);
 
   const onSubmit = handleSubmit((values) => {
@@ -20,7 +22,7 @@ function LoginPage() {
   })
 
   return (
-    <div className='flex h-[calc(96vh-100px)] justify-center items-center'>
+    <div className='flex justify-center items-center h-[calc(86vh-100px)]'>
       <div className='max-w-md bg-zinc-800 p-10 w-full rounded-md '>
         {
           loginErrors.map((err, i) => (<div key={i} className='bg-red-700 text-white font-bold text-center p-2 my-2'>{err}</div>))
@@ -37,7 +39,7 @@ function LoginPage() {
           {errors.password && <p className='text-red-500'>password is required</p>}
 
           <button type="submit" className='flex justify-center w-full border border-zinc-500 
-          rounded-md p-2 mt-5 font-bold hover:bg-white hover:text-zinc-800'>Login</button>
+          rounded-md p-2 mt-4 font-bold hover:bg-white hover:text-zinc-800'>Login</button>
 
         </form>
         <div className='mt-10 '>

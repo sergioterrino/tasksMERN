@@ -7,3 +7,7 @@ body {
   color: white;
   padding: 0 10%;
 }
+
+.mask-gradient {
+  mask-image: linear-gradient(to bottom, black 85%, transparent);
+}

@@ -11,7 +11,7 @@ function SignupPage() {
 
   // Si el usuario está autenticado, lo redirigimos a la página de tareas
   useEffect(() => {
-    if (isAuthenticated) navigate('/tasks');
+    if (isAuthenticated) navigate('/tasks', { state: { fromSignup: true } });
   }, [isAuthenticated]);
 
   const onSubmit = handleSubmit((values) => {
@@ -19,7 +19,7 @@ function SignupPage() {
   });
 
   return (
-    <div className='flex items-center justify-center h-[calc(96vh-100px)]'>
+    <div className='flex items-center justify-center h-[calc(90vh-100px)]'>
       <div className="max-w-md bg-zinc-800 p-10 rounded-md w-full">
         {
           signupErrors.map((err, i) => (<div key={i} className="bg-red-500 p-2 my-2 text-white font-bold text-center">{err}</div>))
@@ -44,7 +44,7 @@ function SignupPage() {
           }
 
           <button type="submit" className='flex justify-center w-full border border-zinc-500 
-          rounded-md p-2 mt-5 font-bold hover:bg-white hover:text-zinc-800'>Create</button>
+          rounded-md p-2 mt-4 font-bold hover:bg-white hover:text-zinc-800'>Create</button>
 
         </form>
         <div className='mt-10'>
