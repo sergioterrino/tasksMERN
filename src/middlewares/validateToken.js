@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 
 export const authRequired = (req, res, next) => {
   const { token } = req.cookies;
+  console.log('validateToken - authRequired - token ->', token);
   if (!token) return res.status(401).json({ message: "Not token. Authorization denied" });
 
   jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {

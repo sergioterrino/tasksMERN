@@ -24,7 +24,7 @@ export const signup = async (req, res) => {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 100,
       samesite: 'none', //
-      secure: true // solo en producción
+      secure: process.env.NODE_ENV === 'production' // solo en producción
     }); // enviamos el token en la cookie
     console.log('toooooooooken auth.controller signup -> ', token);
     res.json({
@@ -58,7 +58,7 @@ export const login = async (req, res) => {
         httpOnly: true,
         maxAge: 7 * 24 * 60 * 60 * 100,
         samesite: 'none', //
-        secure: true // solo en producción
+        secure: process.env.NODE_ENV === 'production' // solo en producción
       }); 
       res.json({
         id: userFound._id,
