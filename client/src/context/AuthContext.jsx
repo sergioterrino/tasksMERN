@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 import { signupRequest, loginRequest, verifyTokenRequest } from '../api/auth.js';
 import Cookies from 'js-cookie';
@@ -75,17 +72,17 @@ export const AuthProvider = ({ children }) => {
   // checkeamos si existe el token en las cookies
   useEffect(() => {
     const checkLogin = async () => { // hago esto para poder poner el async
-      const cookies = Cookies.get(); // traemos todas las cookies
-      console.log('cookies.get ', cookies);
+      const token = Cookies.get('token'); // traemos todas las cookies
+      console.log('cookies.get ', token);
 
-      if (!cookies.token) {
+      if (!token) {
         setIsAuthenticated(false);
         setLoading(false);
         return;
       }
       console.log('token found');
       try {
-        const res = await verifyTokenRequest(cookies.token);
+        const res = await verifyTokenRequest();
         if (!res.data) {
           setIsAuthenticated(false);
           setLoading(false);

@@ -8,7 +8,7 @@ import cors from 'cors';
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: process.env.CORS_ORIGIN,
   credentials: true // xra que permita enviar cookies en la preflight
 }))
 app.use(morgan('dev')); // Esto facilita un log para las requests

@@ -31,8 +31,15 @@ export function TaskProvider({ children }) {
   }
 
   const createTask = async (task) => {
-    const res = await createTaskRequest(task);
-    console.log(res);
+    try {
+      const res = await createTaskRequest(task);
+      console.log('TaskContext - createTask res', res);
+      if (res.status === 200) { 
+        setTasks(prevTasks => [...prevTasks, res.data]); // Añade la nueva tarea al estado
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const deleteTask = async (id) => {
@@ -57,7 +64,10 @@ export function TaskProvider({ children }) {
   const updateTask = async (id, task) => {
     try {
       const res = await updateTaskRequest(id, task);
-      return res.data;
+      if (res.status === 200) {
+        console.log('TaskContext - updateTask res', res);
+        setTasks(prevTasks => prevTasks.map(task => task._id === id ? res.data : task));
+      }
     } catch (error) {
       console.log(error);
     }

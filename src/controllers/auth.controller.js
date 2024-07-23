@@ -76,7 +76,7 @@ export const verifyToken = async (req, res) => {
   console.log('token auth.controller - ', token);
   if (!token) return res.status(401).json({ message: "Unauthorized" });
 
-  jwt.verify(token, TOKEN_SECRET, async (error, user) => {
+  jwt.verify(token, process.env.TOKEN_SECRET, async (error, user) => {
     if (error) return res.status(401).json({ message: "Unauthorized" });
 
     const userFound = await User.findById(user.id);

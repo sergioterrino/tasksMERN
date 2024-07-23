@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import axios from './axios.js';
 
 export const getTasksRequest = () => axios.get('/tasks');
