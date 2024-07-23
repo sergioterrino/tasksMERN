@@ -14,6 +14,7 @@ app.use(cors({
 app.use(morgan('dev')); // Esto facilita un log para las requests
 app.use(express.json()); // para que acepte formatos json en el req.body
 app.use(cookieParser()); // permite rescatar las cookies directamente
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', authRoutes); // cargo las routes y le añado un contexto a todos los endpoints
 app.use('/api', tasksRoutes);
