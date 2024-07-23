@@ -20,7 +20,12 @@ export const signup = async (req, res) => {
     console.log("auth.controller signup -> antes del createAccessToken");
     const token = await createAccessToken({ id: savedUser._id }); // generamos token
 
-    res.cookie('token', token);
+    res.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 7 * 24 * 60 * 60 * 100,
+      samesite: 'none', //
+      secure: true // solo en producción
+    }); // enviamos el token en la cookie
     console.log('toooooooooken auth.controller signup -> ', token);
     res.json({
       id: savedUser._id,
@@ -49,7 +54,12 @@ export const login = async (req, res) => {
     //create the token
     const token = await createAccessToken({ id: userFound._id });
     if (token) {
-      res.cookie("token", token);
+      res.cookie('token', token, {
+        httpOnly: true,
+        maxAge: 7 * 24 * 60 * 60 * 100,
+        samesite: 'none', //
+        secure: true // solo en producción
+      }); 
       res.json({
         id: userFound._id,
         username: userFound.username,
